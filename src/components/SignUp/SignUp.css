@@ -1,0 +1,22 @@
+
+.SignUp {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+}
+
+.SignUp label {
+    display: block;
+    margin-top: 5px;
+}
+
+.SignUp label input {
+    display: block;
+    margin: auto;
+}
+
+.SignUp button{
+    margin: 10px;
+}
