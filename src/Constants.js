@@ -1,3 +1,8 @@
+export const logout = () => {
+    localStorage.clear();
+    window.location.reload();
+}
+
 export const SERVER_URL = 'http://localhost:8080';
 
 export const RequestMethod = {
@@ -19,8 +24,6 @@ export const ResponseStatus = {
 const headerDefault = {"Content-Type": "Application/json"};
 
 export const sendRequest = (method, headers, body, url) => {
-    // headers = isNotEmpty(headers) ? headers.concat(defaultHeaders) : defaultHeaders
-
     const requestOptions = {
         method: method,
         headers: {"Content-Type": "Application/json", ...headers},
@@ -34,20 +37,25 @@ export const isNotEmpty = (object) => {
     return object != null && typeof object !== 'undefined' && object.length > 0;
 };
 
-// export const refresh = () => {
-//     if (localStorage.getItem(this.REFRESH_TOKEN_KEY)) {
-//         sendRequest(RequestMethod.GET, this.AUTH_HEADER, null, this.REFRESH_URL)
-//             .then(res => res.json())
-//             .then(res => {
-//                 if (!res.message) {
-//                     localStorage.clear();
-//                     localStorage.setItem(this.REFRESH_TOKEN_KEY, res.refreshToken);
-//                     localStorage.setItem(this.ACCESS_TOKEN_KEY, res.accessToken);
-//                     localStorage.setItem(this.USER_ID_KEY, res.userId);
-//                     this.setState({isAuthenticated: true})
-//                 } else {
-//                     localStorage.clear();
-//                 }
-//             });
-//     }
-// };
+const REFRESH_URL = "/refresh-token";
+const ACCESS_TOKEN_KEY = "accessToken";
+const REFRESH_TOKEN_KEY = "refreshToken";
+const USER_ID_KEY = "userId";
+export const refresh = () => {
+    if (localStorage.getItem(REFRESH_TOKEN_KEY)) {
+        const AUTH_HEADER = {"Authorization": "Bearer " + localStorage.getItem(REFRESH_TOKEN_KEY)};
+        return sendRequest(RequestMethod.GET, AUTH_HEADER, null, REFRESH_URL)
+            .then(res => res.json())
+            .then(res => {
+                if (!res.message) {
+                    localStorage.clear();
+                    localStorage.setItem(REFRESH_TOKEN_KEY, res.refreshToken);
+                    localStorage.setItem(ACCESS_TOKEN_KEY, res.accessToken);
+                    localStorage.setItem(USER_ID_KEY, res.userId);
+                    return true;
+                } else {
+                    logout();
+                }
+            });
+    }
+};

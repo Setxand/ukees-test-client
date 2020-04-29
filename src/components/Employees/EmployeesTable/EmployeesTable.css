@@ -1,0 +1,23 @@
+.EmployeesTable {
+
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.employee-page-navigation {
+    width: 80px;
+    cursor: pointer;
+}
+.employee-page-navigation-hidden {
+    opacity: 0.3;
+    width: 80px;
+}
+.employee-page-navigation:hover {
+    color: blue;
+}
+
+.varCharColumn {
+    width: 289px;
+}

@@ -5,7 +5,7 @@ const login = props => {
     const PASSWORD = "password";
     const EMAIL = "email";
 
-    return props.sighUpClick ? props.children :
+    return props.openSignup ? props.children :
         (
             <div className={"login"}>
                 <label>Enter email:
@@ -25,7 +25,7 @@ const login = props => {
 
                 <div className={"loginButtons"}>
                     <button onClick={props.login}>Sign in</button>
-                    <button onClick={props.signup}>Sign up</button>
+                    <button onClick={props.signupWindow}>Sign up</button>
                 </div>
             </div>
         )

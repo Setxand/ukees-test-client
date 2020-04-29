@@ -6,7 +6,7 @@ const SignUp = props => {
 	const PASSWORD = "password";
 	const EMAIL = "email";
 	const NAME = "name";
-	const DEPARTMENT = "department";
+
 	const DEPARTMENTS_GET_URL = "/v1/departments-names";
 
 	const[departmentsNames, setDepartmentsNames] = useState([]);
@@ -40,7 +40,7 @@ const SignUp = props => {
 
 
 			<label>Select department:</label>
-			<select className="departments" name="departments">
+			<select onChange={props.changeInpValues} name="departmentId">
 				{departmentsNames.map(d => {
 					return <option value={d.id}>{d.name}</option>;
 				})}

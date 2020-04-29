@@ -1,0 +1,13 @@
+.Employee {
+    border: 1px solid black;
+    width: 800px;
+    margin: auto;
+}
+.Employee p{
+    display: inline-block;
+    margin: 10px;
+}
+
+.Employee button {
+    margin:10px;
+}

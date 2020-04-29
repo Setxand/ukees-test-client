@@ -7,22 +7,20 @@ import {
 } from "react-router-dom";
 import Home from "../Home/Home.js";
 import './App.css';
+import Departments from "../../components/Departments/Departments";
+import Employees from "../../components/Employees/Employees.js"
 
 function App() {
 	return (
 		<div className="App">
 			<Router>
 				<div>
-					<ul>
-						<li>
-							<Link to="/">Home</Link>
-						</li>
-					</ul>
-
-					<hr/>
 					<Switch>
 						<Route exact path="/">
 							<Home/>
+						</Route>
+						<Route exact path="/employees">
+							<Employees/>
 						</Route>
 					</Switch>
 				</div>
